@@ -1,0 +1,451 @@
+---
+layout: null
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cambridge for Palestine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:      #eee8dc;
+      --ink:     #0d0c09;
+      --red:     #a82e2e;     /* watermelon flesh */
+      --green:   #2a5430;     /* watermelon rind */
+      --rind:    #4d7a52;     /* lighter rind */
+      --seed:    #0d0c09;     /* seed = near-black */
+      --mid:     #7b7469;
+      --rule:    #cdc5b6;
+      --pale-r:  #f3e9e9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(720px, calc(100% - 40px)); margin: auto; }
+
+    /* ── Top keffiyeh stripe ─────────────────── */
+    .top-bar {
+      height: 6px;
+      background: var(--green);
+      background-image:
+        repeating-linear-gradient(90deg,  rgba(255,255,255,.22) 0 2px, transparent 2px 10px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,.22) 0 2px, transparent 2px 10px),
+        repeating-linear-gradient( 45deg, rgba(0,0,0,.12) 0 1.5px, transparent 1.5px 7px),
+        repeating-linear-gradient(-45deg, rgba(0,0,0,.12) 0 1.5px, transparent 1.5px 7px);
+    }
+    .top-bar-red { height: 3px; background: var(--red); }
+
+    /* ── Nav ─────────────────────────────────── */
+    header {
+      position: sticky; top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+    .brand {
+      font-size: .95rem;
+      font-weight: 600;
+      display: flex; align-items: center; gap: 7px;
+      letter-spacing: .01em;
+    }
+    .brand em { font-weight: 300; font-style: italic; color: var(--rind); }
+
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a {
+      font-size: .76rem;
+      font-style: italic;
+      color: var(--mid);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .pill-divest {
+      font-style: normal;
+      font-weight: 600;
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--red);
+      padding: 5px 13px;
+      border-radius: 2px;
+      transition: background .15s;
+    }
+    .nav-links .pill-divest:hover { background: #8a2020; }
+
+    /* ── Hero ────────────────────────────────── */
+    .hero { padding: 76px 0 0; }
+
+    .hero-eyebrow {
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    .hero-cambridge {
+      display: block;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -.015em;
+      line-height: 1;
+    }
+    .hero-for-pal {
+      display: block;
+      font-size: clamp(5rem, 14vw, 10rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--red);
+      line-height: .86;
+      letter-spacing: -.03em;
+      margin-bottom: 36px;
+    }
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mid);
+      max-width: 400px;
+      line-height: 1.8;
+      padding-bottom: 52px;
+    }
+
+    /* Full-bleed keffiyeh band at hero bottom */
+    .keffiyeh-band {
+      width: 100%;
+      height: 26px;
+      background: var(--green);
+      background-image:
+        repeating-linear-gradient(90deg,  rgba(255,255,255,.2) 0 2px, transparent 2px 12px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,.2) 0 2px, transparent 2px 12px),
+        repeating-linear-gradient( 45deg, rgba(0,0,0,.13) 0 1.5px, transparent 1.5px 8.5px),
+        repeating-linear-gradient(-45deg, rgba(0,0,0,.13) 0 1.5px, transparent 1.5px 8.5px);
+      position: relative;
+    }
+    .keffiyeh-band::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background: var(--red);
+      opacity: .65;
+    }
+
+    /* ── Get Involved ────────────────────────── */
+    .involve {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .involve-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .involve-label {
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+    .involve-quote {
+      font-size: clamp(1.25rem, 2.8vw, 1.8rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.25;
+    }
+    .involve-quote strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--red);
+    }
+
+    .involve-links { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+
+    .cta-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      transition: border-color .15s, background .15s;
+      background: transparent;
+    }
+    .cta-link:hover { border-color: var(--ink); background: rgba(255,255,255,.35); }
+    .cta-link.red  { border-color: var(--red); }
+    .cta-link.red:hover { background: var(--pale-r); }
+
+    .cta-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .cta-name {
+      font-size: .9rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .cta-sub {
+      font-size: .72rem;
+      font-style: italic;
+      color: var(--mid);
+      font-weight: 300;
+    }
+    .cta-link.red .cta-name { color: var(--red); }
+
+    /* ── Work ────────────────────────────────── */
+    .oneliner {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: .86rem;
+      color: var(--mid);
+      font-style: italic;
+      letter-spacing: .01em;
+    }
+    .oneliner strong {
+      color: var(--ink);
+      font-style: normal;
+    }
+    .oneliner strong + strong::before { content: ' · '; font-weight: 300; }
+
+    /* Tiny seed decorators */
+    .seed {
+      display: inline-block;
+      width: 5px; height: 7px;
+      background: var(--seed);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      margin: 0 6px 1px;
+      transform: rotate(-20deg);
+      opacity: .3;
+      vertical-align: middle;
+    }
+
+    /* ── Posts ───────────────────────────────── */
+    .posts { padding: 48px 0; }
+
+    .posts-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .posts-head h2 {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: var(--mid);
+    }
+    .posts-head a { font-size: .74rem; font-style: italic; color: var(--mid); }
+    .posts-head a:hover { color: var(--ink); }
+
+    .post-row {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 0 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .post-d {
+      font-size: .66rem;
+      color: var(--rule);
+      font-style: italic;
+      padding-top: 4px;
+      line-height: 1.45;
+    }
+    .post-t {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    .post-t a { transition: color .15s; }
+    .post-t a:hover { color: var(--red); }
+    .post-x {
+      grid-column: 2;
+      font-size: .8rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mid);
+      margin-top: 5px;
+      line-height: 1.65;
+    }
+
+    /* ── Footer ──────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: .7rem;
+      color: var(--mid);
+      font-style: italic;
+    }
+    footer strong { font-style: normal; font-weight: 600; color: var(--ink); font-size: .82rem; }
+    footer .ft-ig { color: var(--red); font-style: normal; font-weight: 600; }
+
+    /* ── Responsive ──────────────────────────── */
+    @media (max-width: 580px) {
+      .nav-links a:not(.pill-divest) { display: none; }
+      .involve-grid { grid-template-columns: 1fr; gap: 32px; }
+      .post-row { grid-template-columns: 1fr; gap: 4px; }
+      .post-d { padding-top: 0; }
+      .post-x { grid-column: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar"></div>
+  <div class="top-bar-red"></div>
+
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="{{ '/' | relative_url }}">
+          🍉 Cambridge <em>for Palestine</em>
+        </a>
+        <div class="nav-links">
+          <a href="{{ '/about/' | relative_url }}">About</a>
+          <a href="#posts">Posts</a>
+          <a href="#involve">Get involved</a>
+          <a class="pill-divest"
+             href="https://actionnetwork.org/petitions/c4pdivest?clear_id=true"
+             target="_blank" rel="noopener">
+            Divest ↗
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="hero-eyebrow">Cambridge, Massachusetts</p>
+        <span class="hero-cambridge">Cambridge</span>
+        <span class="hero-for-pal">for Palestine</span>
+        <p class="hero-body">
+          A community organization working for Palestinian liberation through
+          education, advocacy, and principled local solidarity.
+        </p>
+      </div>
+      <div class="keffiyeh-band"></div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section class="involve" id="involve">
+      <div class="wrap">
+        <div class="involve-grid">
+          <div>
+            <p class="involve-label">Get involved</p>
+            <blockquote class="involve-quote">
+              From Cambridge<br>to Palestine,<br>
+              <strong>solidarity is action.</strong>
+            </blockquote>
+          </div>
+          <div class="involve-links">
+            <a class="cta-link red"
+               href="https://www.instagram.com/cambridgema4palestine/"
+               target="_blank" rel="noopener">
+              <span class="cta-icon">📸</span>
+              <div>
+                <div class="cta-name">@cambridgema4palestine</div>
+                <div class="cta-sub">Follow us on Instagram</div>
+              </div>
+            </a>
+            <a class="cta-link"
+               href="https://actionnetwork.org/petitions/c4pdivest?clear_id=true"
+               target="_blank" rel="noopener">
+              <span class="cta-icon">🖊</span>
+              <div>
+                <div class="cta-name">Sign the divestment letter</div>
+                <div class="cta-sub">Cambridge Divestment Campaign</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK ONE-LINER -->
+    <div class="wrap">
+      <p class="oneliner">
+        <strong>Education</strong><strong>Advocacy</strong><strong>Community</strong>
+        <span class="seed"></span>
+        organizing together for justice, dignity, and liberation.
+      </p>
+    </div>
+
+    <!-- POSTS -->
+    <section class="posts" id="posts">
+      <div class="wrap">
+        <div class="posts-head">
+          <h2>Latest posts</h2>
+          <a href="/posts/">All posts →</a>
+        </div>
+
+        {% for post in site.posts limit:6 %}
+        <article class="post-row">
+          <div class="post-d">{{ post.date | date: "%b %Y" }}</div>
+          <div>
+            <h3 class="post-t">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            {% if post.excerpt %}
+            <p class="post-x">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+
+      </div>
+    </section>
+
+  </main>
+
+  <div class="wrap">
+    <footer>
+      <strong>🍉 Cambridge for Palestine</strong>
+      <span>
+        <a class="ft-ig"
+           href="https://www.instagram.com/cambridgema4palestine/"
+           target="_blank" rel="noopener">
+          @cambridgema4palestine
+        </a>
+        · Cambridge, Massachusetts
+      </span>
+    </footer>
+  </div>
+
+</body>
+</html>
